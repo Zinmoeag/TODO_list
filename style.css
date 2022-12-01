@@ -1,0 +1,321 @@
+*{
+	font-size: 10px;
+	outline: none;
+	transition: all .5s ease-in-out;
+}
+
+
+:root{
+	--blue:#67bcf8;
+	--violet:#734eff;
+	--violet_shadow:rgb(49,66,152,0.5);
+}
+
+body{
+	background: linear-gradient(45deg, #8D72E1,#B9E0FF,#8D9EFF);
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center; justify-content: center;
+
+}
+
+.time{
+	position: absolute;
+	top: -8rem; right: 1rem;
+}
+
+.day,.month,.year{
+	color: #fae1e1;
+	font-size: 1.3rem;
+	font-family: 'Dancing Script', cursive;
+	font-weight: 500;
+}
+.title{
+	font-family: 'Dancing Script', cursive;
+	position: absolute;
+	font-size: 2.2rem;
+	color: var(--violet);
+	z-index: 100;
+	top: -3.5rem;
+
+}
+.btn-custom{
+	background: linear-gradient(45deg,#67bcf8,#734eff);
+	color:white;
+	font-size: 1.3rem;
+	padding: 0.5rem 2rem;
+	border: none; 
+	border-radius: 0.5rem;
+	margin-left: 2rem;
+}
+.userinputBox{
+	width: 40rem;
+	background-color: white;
+	border-radius: 10px;
+	padding: 25px 20px;
+	padding-top:5rem;
+	position: relative;
+	box-shadow: 2px 1px 5px var(--violet_shadow);
+	margin-bottom: 1rem;
+	z-index: 1000;
+}
+
+.userinputBox .img-container{
+	position: absolute;
+	right: 1rem; top:-4.5rem;
+	width: 13rem;
+	overflow: hidden;
+	transform: rotate(7deg);
+}
+.userinputBox .img-container img{
+	width: 100%;
+}
+
+.heading{
+	font-family: 'Raleway', sans-serif;
+	color: var(--violet);
+	font-weight: 200;
+	font-size: 1.5rem;
+}
+
+
+.userinputBox form{
+	display: flex;
+}
+.userinputBox form .box{
+	width: 100%;
+	background-color: white;
+	border-bottom: 2px solid var(--blue);
+	border-bottom-left-radius: 5px;
+	position: relative;
+}
+
+.placeholde{
+	position: absolute;
+	top:0; left: 0;
+	color: var(--violet);
+	font-family: 'Raleway', sans-serif;
+	font-weight: 300;
+	font-size: 1.2rem;
+	z-index: 100;
+	pointer-events: none;
+	transition: all 0.5s ease-in-out;
+}
+
+
+.userinputBox form .box input{
+	border: none;
+	color: var(--blue);
+	font-size: 1.3rem;
+	padding-left: 2rem: 
+}
+
+.userinputBox form .box input:focus + .placeholde{
+	top: -2.5rem;
+	left: 0.8rem;
+	transform: scale(1.2);
+}
+
+
+
+
+
+/*---*/
+
+
+.task-list{
+	width: 40rem;
+	display: flex;
+	flex-direction: column;
+}
+
+
+
+.task-list .task{
+	height: 5rem;
+	width: 100%;
+	margin-bottom: 1rem;
+	z-index: 200;
+	overflow: hidden;
+
+}
+
+.fill-width{
+	width: 100%;
+	height: 100%;
+	padding: 0 20px;
+	background-color: white;
+	border-radius: 1rem;
+	display: flex;
+	align-items: center; 
+	position: relative;
+	cursor: pointer;
+	z-index: 200;
+}
+.taskComing{
+	transform: scale(0.5);
+	animation: taskcoming 0.8s forwards;
+}
+
+@keyframes taskcoming{
+	100%{
+		transform: scale(1);
+	}
+}
+
+.taskExit{
+	transform: scale(1);
+	animation: taskout 0.8s forwards;
+}
+@keyframes taskout{
+	100%{
+		transform: scale(0);
+		height: 0;
+		margin-bottom: 0;
+	}
+}
+
+.task-display{
+	width: 30rem;
+	color: black;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+}
+
+.task-list .task .trash-btn{
+	position: absolute;
+	right: 5rem;
+	font-size: 1.5rem;
+	color: red;
+}
+
+.task-list .task .edit-btn{
+	position: absolute;
+	right: 2rem;
+	z-index: 100;
+	font-size: 1.5rem;
+	color: var(--blue);
+	transition: all 0.5s ease-in-out;
+}
+
+.circle{
+	width: 5rem;
+	height: 5rem;
+	transform: rotate(90deg);
+	position: absolute;
+	background: linear-gradient(90deg,#67bcf8,#b187ff);
+	right: -6rem;
+	z-index: 10;
+	border-radius: 10px;
+	transition: all 0.5s ease-in-out;
+	box-shadow: 1px 8px 5px  var(--violet_shadow);
+}
+
+
+
+.task.active .circle{
+	transform: rotate(23deg);
+	right: -2rem;
+}
+
+.task.active .circle::after{
+	content: "";
+	width: 5rem;
+	height: 5rem;
+	position: absolute;
+	background: none;
+	box-shadow: 1px 1px 2px var(--violet_shadow),-2px -2px 5px rgb(88,56,160,0.5);
+	border-radius: 10px;
+	transform: scale(1);
+	opacity: 1;
+	animation: shawdow 2.5s infinite;
+}
+
+@keyframes shawdow{
+	80%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 0;
+		transform: scale(1.5);
+	}
+}
+
+
+
+.task.active .edit-btn{
+	color: white;
+	right: 0.8rem;
+}
+
+.resetBtn{
+	width: 20rem;
+	padding: 0.5rem 0;
+	text-align: center;
+	transition: all 0.5s ease-in-out;
+	opacity: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 450px){
+*{
+	font-size: 9px;
+}
+.title{
+	font-size: 1.65rem;
+	left: 0.6rem;
+	top: -2.6rem;
+
+}
+.userinputBox{
+	width:88%;
+}
+
+.userinputBox .img-container{
+	right: 1rem; top:-5rem;
+	width: 13rem;
+}
+
+.task-list{
+	width: 88%;
+	display: flex;
+	flex-direction: column;
+}
+
+.fill-width{
+	padding: 0 12px;
+	border-radius: 1rem;
+}
+
+.task-display{
+	width: 26rem;
+	color: black;
+	overflow: hidden;
+}
+
+.task-list .task .trash-btn{
+	right: 4.5rem;
+	font-size: 1.4rem;
+}
+
+
+
+
+
+}
+
+
+
+
